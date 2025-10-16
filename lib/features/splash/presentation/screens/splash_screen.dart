@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen>
     _timer = Timer(const Duration(milliseconds: 2500), () {
       if (!mounted) return;
       // Navigate using GoRouter to the next screen; update path as needed
-      context.go('/home');
+      context.go('/onboarding');
     });
   }
 
