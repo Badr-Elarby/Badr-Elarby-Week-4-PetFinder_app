@@ -8,10 +8,13 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<List<CatImageModel>> getCats() async {
+  Future<List<CatImageModel>> getCats({int page = 0, int limit = 10}) async {
     try {
       // Get raw API data from Data Source
-      final rawCatsData = await remoteDataSource.getCats();
+      final rawCatsData = await remoteDataSource.getCats(
+        page: page,
+        limit: limit,
+      );
 
       // Transform raw data to domain models in Repository
       final cats = rawCatsData
@@ -31,8 +34,18 @@ class HomeRepositoryImpl implements HomeRepository {
     // Perform data filtering/manipulation in Repository
     return cats.where((cat) {
       if (cat.breeds.isEmpty) return false;
-      final breedName = cat.breeds.first.name.toLowerCase();
-      return breedName.contains(query.toLowerCase());
+
+      final breed = cat.breeds.first;
+      final searchTerm = query.toLowerCase();
+
+      // Search across multiple attributes: name, origin, and weight
+      final nameMatch = breed.name.toLowerCase().contains(searchTerm);
+      final originMatch =
+          breed.origin?.toLowerCase().contains(searchTerm) ?? false;
+      final weightMatch =
+          breed.weight?.toLowerCase().contains(searchTerm) ?? false;
+
+      return nameMatch || originMatch || weightMatch;
     }).toList();
   }
 }

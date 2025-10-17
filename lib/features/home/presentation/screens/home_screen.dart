@@ -16,18 +16,36 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   String selectedCategory = 'All';
 
   @override
   void initState() {
     super.initState();
     context.read<HomeCubit>().getCats();
+
+    // Add scroll listener for pagination
+    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
+    _scrollController.dispose();
     _searchController.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) {
+      context.read<HomeCubit>().loadMoreCats();
+    }
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9); // Trigger when 90% scrolled
   }
 
   @override
@@ -61,7 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
 
-              SizedBox(height: 24.h),
+              SizedBox(height: 15.h),
+
+              // Search description
+              Text(
+                'You can search by breed name, country, or weight',
+                style: AppTextStyles.SubTextGrey14Regular,
+              ),
+
+              SizedBox(height: 10.h),
 
               // Search Bar
               Container(
@@ -97,12 +123,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              SizedBox(height: 24.h),
+              SizedBox(height: 10.h),
 
               // Categories Section
               Text('Categories', style: AppTextStyles.HeadingBlack20Bold),
 
-              SizedBox(height: 16.h),
+              SizedBox(height: 10.h),
 
               // Category Filter Buttons
               SizedBox(
@@ -143,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              SizedBox(height: 24.h),
+              SizedBox(height: 15.h),
 
               // Cats List
               Expanded(
@@ -228,8 +254,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         color: AppColors.MintGreen,
                         child: ListView.builder(
-                          itemCount: state.filteredCats.length,
+                          controller: _scrollController,
+                          itemCount:
+                              state.filteredCats.length +
+                              (state.isLoadingMore ? 1 : 0),
                           itemBuilder: (context, index) {
+                            // Show loading indicator at the bottom
+                            if (index == state.filteredCats.length) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16.h),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.MintGreen,
+                                  ),
+                                ),
+                              );
+                            }
+
                             final cat = state.filteredCats[index];
                             return CatCard(cat: cat);
                           },

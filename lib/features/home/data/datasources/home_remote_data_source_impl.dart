@@ -7,7 +7,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<List<Map<String, dynamic>>> getCats() async {
+  Future<List<Map<String, dynamic>>> getCats({
+    int page = 0,
+    int limit = 10,
+  }) async {
     // Make API call - all HTTP concerns handled by Dio Interceptors:
     // - API key injection (AuthInterceptor)
     // - Common headers (AuthInterceptor)
@@ -21,8 +24,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         'format': 'json',
         'has_breeds': 'true',
         'order': 'RANDOM',
-        'page': '0',
-        'limit': '10',
+        'page': page.toString(),
+        'limit': limit.toString(),
       },
     );
 

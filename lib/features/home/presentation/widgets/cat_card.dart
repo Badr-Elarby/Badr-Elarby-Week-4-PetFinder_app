@@ -83,7 +83,7 @@ class CatCard extends StatelessWidget {
                   // Life Span and Origin
                   if (breed?.lifeSpan != null || breed?.origin != null) ...[
                     Text(
-                      '${breed?.lifeSpan ?? 'Unknown'} • ${breed?.origin ?? 'Unknown'}',
+                      '${breed?.lifeSpan != null ? '${breed!.lifeSpan} years' : 'Unknown'} • ${breed?.origin ?? 'Unknown'}',
                       style: AppTextStyles.SubTextGrey14Regular,
                     ),
                     SizedBox(height: 4.h),
