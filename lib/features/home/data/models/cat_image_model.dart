@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'cat_breed_model.dart';
 
-class CatImageModel {
+class CatImageModel extends Equatable {
   final String id;
   final String url;
   final int width;
@@ -41,4 +42,7 @@ class CatImageModel {
       'breeds': breeds.map((breed) => breed.toJson()).toList(),
     };
   }
+
+  @override
+  List<Object?> get props => [id, url, width, height, breeds];
 }

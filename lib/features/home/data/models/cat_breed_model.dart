@@ -1,4 +1,6 @@
-class CatBreedModel {
+import 'package:equatable/equatable.dart';
+
+class CatBreedModel extends Equatable {
   final String id;
   final String name;
   final String? origin;
@@ -46,4 +48,16 @@ class CatBreedModel {
       'temperament': temperament,
     };
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    name,
+    origin,
+    lifeSpan,
+    weight,
+    description,
+    age,
+    temperament,
+  ];
 }
