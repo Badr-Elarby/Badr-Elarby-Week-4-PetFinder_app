@@ -9,8 +9,9 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   final LocalStorageService _localStorageService;
   final String _favoritesKey = 'favorites';
 
-  FavoritesCubit()
-    : _localStorageService = GetIt.instance<LocalStorageService>(),
+  FavoritesCubit({LocalStorageService? localStorageService})
+    : _localStorageService =
+          localStorageService ?? GetIt.instance<LocalStorageService>(),
       super(FavoritesInitial());
 
   Future<void> getFavorites() async {
