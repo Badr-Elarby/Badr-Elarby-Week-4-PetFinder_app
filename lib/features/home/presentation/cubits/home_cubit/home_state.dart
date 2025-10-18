@@ -1,12 +1,20 @@
+import 'package:equatable/equatable.dart';
 import 'package:petfinder_app/features/home/data/models/cat_image_model.dart';
 
-abstract class HomeState {
+abstract class HomeState extends Equatable {
   const HomeState();
+
+  @override
+  List<Object?> get props => [];
 }
 
-class HomeInitial extends HomeState {}
+class HomeInitial extends HomeState {
+  const HomeInitial();
+}
 
-class HomeLoading extends HomeState {}
+class HomeLoading extends HomeState {
+  const HomeLoading();
+}
 
 class HomeSuccess extends HomeState {
   final List<CatImageModel> cats;
@@ -24,10 +32,23 @@ class HomeSuccess extends HomeState {
     this.hasMorePages = true,
     this.currentPage = 0,
   });
+
+  @override
+  List<Object?> get props => [
+    cats,
+    filteredCats,
+    searchQuery,
+    isLoadingMore,
+    hasMorePages,
+    currentPage,
+  ];
 }
 
 class HomeError extends HomeState {
   final String message;
 
   const HomeError({required this.message});
+
+  @override
+  List<Object?> get props => [message];
 }
