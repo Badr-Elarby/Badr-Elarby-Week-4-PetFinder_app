@@ -191,21 +191,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Cat Name and Price
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                breed?.name ?? 'Unknown Breed',
-                                style: AppTextStyles.HeadingBlack24Bold,
-                              ),
-                            ),
-                            Text(
-                              '\$95', // Mock price
-                              style: AppTextStyles.MintGreen26Bold,
-                            ),
-                          ],
+                        // Cat Name
+                        Text(
+                          breed?.name ?? 'Unknown Breed',
+                          style: AppTextStyles.HeadingBlack24Bold,
                         ),
 
                         SizedBox(height: 8.h),
@@ -233,16 +222,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
                           children: [
                             Expanded(
                               child: _buildAttributeCard(
-                                'Gender',
-                                'Male', // Mock gender
-                                Icons.pets,
+                                'Origin',
+                                breed?.origin ?? 'Unknown', // Use breed origin
+                                Icons.location_on,
                               ),
                             ),
                             SizedBox(width: 12.w),
                             Expanded(
                               child: _buildAttributeCard(
-                                'Age',
-                                breed?.age ?? '1 Year', // Use breed age or mock
+                                'Life Span',
+                                breed?.lifeSpan ??
+                                    'Unknown', // Use breed life span
                                 Icons.cake,
                               ),
                             ),
