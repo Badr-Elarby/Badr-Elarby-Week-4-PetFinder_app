@@ -6,6 +6,8 @@ import 'package:petfinder_app/core/utils/app_colors.dart';
 import 'package:petfinder_app/core/utils/app_styles.dart';
 import 'package:petfinder_app/features/ProductDetails/presentation/cubit/product_details_cubit.dart';
 import 'package:petfinder_app/features/ProductDetails/presentation/cubit/product_details_state.dart';
+import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_cubit.dart';
+import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_state.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final String catId;
@@ -78,14 +80,34 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
         title: Text('Details', style: AppTextStyles.HeadingBlack20Bold),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.favorite_border,
-              color: AppColors.MintGreen,
-              size: 24.w,
-            ),
-            onPressed: () {
-              // TODO: Add to favorites functionality
+          BlocBuilder<FavoritesCubit, FavoritesState>(
+            builder: (context, favoriteState) {
+              final catId = widget.catId;
+              final isFavorite =
+                  favoriteState is FavoritesSuccess &&
+                  favoriteState.favorites.any((fav) => fav.id == catId);
+              return IconButton(
+                icon: Icon(
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorite ? AppColors.CoralRed : AppColors.MintGreen,
+                  size: 24.w,
+                ),
+                onPressed: () {
+                  if (isFavorite) {
+                    context.read<FavoritesCubit>().removeFromFavorites(catId);
+                  } else {
+                    // We need the cat object, not just id. For product details, we have the cat from ProductDetailsState
+                    final productState = context
+                        .read<ProductDetailsCubit>()
+                        .state;
+                    if (productState is ProductDetailsSuccess) {
+                      context.read<FavoritesCubit>().addToFavorites(
+                        productState.cat,
+                      );
+                    }
+                  }
+                },
+              );
             },
           ),
         ],

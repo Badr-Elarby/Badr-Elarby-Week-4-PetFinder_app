@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:get_it/get_it.dart';
 import 'package:petfinder_app/core/utils/app_colors.dart';
 import 'package:petfinder_app/core/utils/app_styles.dart';
-import 'package:petfinder_app/features/home/data/models/cat_image_model.dart';
 import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_cubit.dart';
-import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_state.dart';
+import 'package:petfinder_app/features/home/data/models/cat_image_model.dart';
 
-class CatCard extends StatelessWidget {
+class FavoriteProductCard extends StatelessWidget {
   final CatImageModel cat;
 
-  const CatCard({super.key, required this.cat});
+  const FavoriteProductCard({super.key, required this.cat});
 
   @override
   Widget build(BuildContext context) {
@@ -114,34 +112,20 @@ class CatCard extends StatelessWidget {
               ),
             ),
 
-            // Favorite Icon
-            BlocBuilder<FavoritesCubit, FavoritesState>(
-              builder: (context, state) {
-                final isFavorite =
-                    state is FavoritesSuccess &&
-                    state.favorites.any((fav) => fav.id == cat.id);
-                return GestureDetector(
-                  onTap: () {
-                    if (isFavorite) {
-                      context.read<FavoritesCubit>().removeFromFavorites(
-                        cat.id,
-                      );
-                    } else {
-                      context.read<FavoritesCubit>().addToFavorites(cat);
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(8.w),
-                    child: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: isFavorite
-                          ? AppColors.CoralRed
-                          : AppColors.MintGreen,
-                      size: 24.w,
-                    ),
-                  ),
-                );
+            // Favorite Icon - Filled since it's in favorites
+            GestureDetector(
+              onTap: () {
+                // Remove from favorites
+                context.read<FavoritesCubit>().removeFromFavorites(cat.id);
               },
+              child: Container(
+                padding: EdgeInsets.all(8.w),
+                child: Icon(
+                  Icons.favorite,
+                  color: AppColors.CoralRed,
+                  size: 24.w,
+                ),
+              ),
             ),
           ],
         ),

@@ -77,7 +77,7 @@ class BottomNavBar extends StatelessWidget {
             context.go('/home');
             break;
           case 1:
-            // Navigate to favorites (placeholder)
+            context.go('/favorites');
             break;
           case 2:
             // Navigate to chat (placeholder)

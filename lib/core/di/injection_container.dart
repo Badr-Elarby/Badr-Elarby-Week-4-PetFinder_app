@@ -15,6 +15,7 @@ import 'package:petfinder_app/features/ProductDetails/data/datasources/product_d
 import 'package:petfinder_app/features/ProductDetails/data/repositories/product_details_repository.dart';
 import 'package:petfinder_app/features/ProductDetails/data/repositories/product_details_repository_impl.dart';
 import 'package:petfinder_app/features/ProductDetails/presentation/cubit/product_details_cubit.dart';
+import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_cubit.dart';
 import 'package:petfinder_app/core/routing/app_router.dart';
 
 final getIt = GetIt.instance;
@@ -67,6 +68,7 @@ Future<void> setupGetIt() async {
   // Cubits
   getIt.registerFactory(() => HomeCubit(homeRepository: getIt()));
   getIt.registerFactory(() => ProductDetailsCubit(repository: getIt()));
+  getIt.registerFactory(() => FavoritesCubit());
 
   // App Router
   getIt.registerLazySingleton(() => AppRouter());
