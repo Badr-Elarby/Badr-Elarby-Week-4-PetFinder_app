@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:petfinder_app/core/utils/app_colors.dart';
 import 'package:petfinder_app/core/utils/app_styles.dart';
 import 'package:petfinder_app/features/home/data/models/cat_image_model.dart';
@@ -15,8 +16,7 @@ class CatCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        // Navigate to details screen (placeholder for future implementation)
-        // context.go('/product-details/${cat.id}');
+        context.push('/product-details/${cat.id}');
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 16.h),
