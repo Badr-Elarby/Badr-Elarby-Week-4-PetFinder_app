@@ -6,6 +6,8 @@ import 'package:petfinder_app/features/splash/presentation/screens/splash_screen
 import 'package:petfinder_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:petfinder_app/features/home/presentation/screens/home_screen.dart';
 import 'package:petfinder_app/features/home/presentation/cubits/home_cubit/home_cubit.dart';
+import 'package:petfinder_app/features/ProductDetails/presentation/screens/product_details_screen.dart';
+import 'package:petfinder_app/features/ProductDetails/presentation/cubit/product_details_cubit.dart';
 import 'package:petfinder_app/core/widgets/bottom_nav_bar.dart';
 
 class AppRouter {
@@ -68,6 +70,14 @@ class AppRouter {
                 body: Center(child: Text('Profile Screen - Coming Soon')),
               ),
             ),
+            GoRoute(
+              path: '/product-details/:id',
+              name: AppRoutes.productDetails,
+              builder: (context, state) => BlocProvider(
+                create: (context) => GetIt.instance<ProductDetailsCubit>(),
+                child: ProductDetailsScreen(catId: state.pathParameters['id']!),
+              ),
+            ),
           ],
         ),
       ],
@@ -85,6 +95,10 @@ class AppRouter {
       case '/profile':
         return 3;
       default:
+        // For product details and other routes, maintain the home tab as active
+        if (path.startsWith('/product-details/')) {
+          return 0; // Keep home tab active when viewing product details
+        }
         return 0;
     }
   }
@@ -94,6 +108,7 @@ class AppRouter {
 class AppRoutes {
   static const String splash = 'splash';
   static const String onboarding = 'onboarding';
+  static const String productDetails = 'productDetails';
   static const String home = 'home';
   static const String favorites = 'favorites';
   static const String chat = 'chat';

@@ -10,6 +10,11 @@ import 'package:petfinder_app/features/home/data/datasources/home_remote_data_so
 import 'package:petfinder_app/features/home/data/repositories/home_repository.dart';
 import 'package:petfinder_app/features/home/data/repositories/home_repository_impl.dart';
 import 'package:petfinder_app/features/home/presentation/cubits/home_cubit/home_cubit.dart';
+import 'package:petfinder_app/features/ProductDetails/data/datasources/product_details_datasource.dart';
+import 'package:petfinder_app/features/ProductDetails/data/datasources/product_details_datasource_impl.dart';
+import 'package:petfinder_app/features/ProductDetails/data/repositories/product_details_repository.dart';
+import 'package:petfinder_app/features/ProductDetails/data/repositories/product_details_repository_impl.dart';
+import 'package:petfinder_app/features/ProductDetails/presentation/cubit/product_details_cubit.dart';
 import 'package:petfinder_app/core/routing/app_router.dart';
 
 final getIt = GetIt.instance;
@@ -47,14 +52,21 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<HomeRemoteDataSource>(
     () => HomeRemoteDataSourceImpl(dio: getIt()),
   );
+  getIt.registerLazySingleton<ProductDetailsDataSource>(
+    () => ProductDetailsDataSourceImpl(dio: getIt()),
+  );
 
   // Repositories
   getIt.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(remoteDataSource: getIt()),
   );
+  getIt.registerLazySingleton<ProductDetailsRepository>(
+    () => ProductDetailsRepositoryImpl(dataSource: getIt()),
+  );
 
   // Cubits
   getIt.registerFactory(() => HomeCubit(homeRepository: getIt()));
+  getIt.registerFactory(() => ProductDetailsCubit(repository: getIt()));
 
   // App Router
   getIt.registerLazySingleton(() => AppRouter());
