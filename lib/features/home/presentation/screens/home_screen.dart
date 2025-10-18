@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:petfinder_app/core/utils/app_colors.dart';
 import 'package:petfinder_app/core/utils/app_styles.dart';
 import 'package:petfinder_app/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:petfinder_app/features/home/presentation/cubits/home_cubit/home_state.dart';
+import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_cubit.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/cat_card.dart';
 
 class HomeScreen extends StatefulWidget {

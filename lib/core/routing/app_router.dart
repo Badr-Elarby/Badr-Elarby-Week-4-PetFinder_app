@@ -8,6 +8,8 @@ import 'package:petfinder_app/features/home/presentation/screens/home_screen.dar
 import 'package:petfinder_app/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:petfinder_app/features/ProductDetails/presentation/screens/product_details_screen.dart';
 import 'package:petfinder_app/features/ProductDetails/presentation/cubit/product_details_cubit.dart';
+import 'package:petfinder_app/features/Favorites/presentation/screens/favourite_screen.dart';
+import 'package:petfinder_app/features/Favorites/presentation/cubits/favorites_cubit/favorites_cubit.dart';
 import 'package:petfinder_app/core/widgets/bottom_nav_bar.dart';
 
 class AppRouter {
@@ -44,16 +46,24 @@ class AppRouter {
             GoRoute(
               path: '/home',
               name: AppRoutes.home,
-              builder: (context, state) => BlocProvider(
-                create: (context) => GetIt.instance<HomeCubit>(),
+              builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider<HomeCubit>(
+                    create: (context) => GetIt.instance<HomeCubit>(),
+                  ),
+                  BlocProvider<FavoritesCubit>(
+                    create: (context) => GetIt.instance<FavoritesCubit>(),
+                  ),
+                ],
                 child: const HomeScreen(),
               ),
             ),
             GoRoute(
               path: '/favorites',
               name: AppRoutes.favorites,
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text('Favorites Screen - Coming Soon')),
+              builder: (context, state) => BlocProvider(
+                create: (context) => GetIt.instance<FavoritesCubit>(),
+                child: const FavouriteScreen(),
               ),
             ),
             GoRoute(
@@ -73,8 +83,15 @@ class AppRouter {
             GoRoute(
               path: '/product-details/:id',
               name: AppRoutes.productDetails,
-              builder: (context, state) => BlocProvider(
-                create: (context) => GetIt.instance<ProductDetailsCubit>(),
+              builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider<ProductDetailsCubit>(
+                    create: (context) => GetIt.instance<ProductDetailsCubit>(),
+                  ),
+                  BlocProvider<FavoritesCubit>(
+                    create: (context) => GetIt.instance<FavoritesCubit>(),
+                  ),
+                ],
                 child: ProductDetailsScreen(catId: state.pathParameters['id']!),
               ),
             ),
