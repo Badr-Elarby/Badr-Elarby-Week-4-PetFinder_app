@@ -89,19 +89,19 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### 🟢 Splash & Onboarding
 | Splash | Onboarding |
 |:--:|:--:|
-| ![Splash](./media/splash.png) | ![Onboarding](./media/onboarding.png) |
+| ![Splash](media/splash.jpg) | ![Onboarding](media/onboarding.jpg) |
 
 ---
 
 ### 🏠 Home Screens
 | Home 1 | Home 2 | Home 3 |
 |:--:|:--:|:--:|
-| ![Home1](./media/home.png) | ![Home2](./media/home1.png) | ![Home3](./media/home2.png) |
+| ![Home1](media/home.jpg) | ![Home2](media/home1.jpg) | ![Home3](media/home2.jpg) |
 
 ---
 
 ### 🐾 Category Details & Favorites
 | Category Details | Favorites |
 |:--:|:--:|
-| ![Category Details](./media/cat_details.png) | ![Favorites](./media/favorites.png) |
+| ![Category Details](media/cat_details.jpg) | ![Favorites](media/favorites.jpg) |
 
