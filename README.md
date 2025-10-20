@@ -105,3 +105,11 @@ Follow these instructions to get a copy of the project up and running on your lo
 |:--:|:--:|
 | ![Category Details](media/cat_details.jpg) | ![Favorites](media/favorites.jpg) |
 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+## 🎬 App Demo
+
+You can download or watch the demo video here:  
+[▶️ Watch Demo](media/demo.mp4)
+
+
+
