@@ -30,20 +30,22 @@ The project's `lib` directory is organized by features, with a `core` directory 
 
 ```
 lib/
-├── core/                # Shared utilities, services, DI, and routing
-│   ├── di/
-│   ├── network/
-│   ├── routing/
-│   ├── services/
-│   ├── utils/
-│   └── widgets/
-├── features/            # Individual feature modules
-│   ├── Favorites/       # Manages the user's favorite cats
-│   ├── home/            # Main screen with cat listings and search
-│   ├── onboarding/      # Initial onboarding screen
-│   ├── ProductDetails/  # Detailed view for a single cat
-│   └── splash/          # App's launch screen
-└── main.dart            # Application entry point
+├── core/                  # Shared utilities, services, and widgets
+│   ├── di/                # Dependency injection setup (get_it)
+│   ├── network/           # Dio configuration and interceptors
+│   ├── routing/           # App routing with GoRouter
+│   ├── services/          # Core services (e.g., local storage)
+│   ├── utils/             # App-wide constants (colors, styles)
+│   └── widgets/           # Common widgets (e.g., BottomNavBar)
+├── features/              # Individual feature modules
+│   ├── auth/              # Authentication (login, signup)
+│   ├── Cart/              # Shopping cart functionality
+│   ├── Favorites/         # Wishlist/favorites management
+│   ├── home/              # Home screen and product listing
+│   ├── onboarding/        # Initial setup screens (gender selection)
+│   ├── ProductDetails/    # Product details screen
+│   └── spalsh/            # Splash screen
+└── main.dart              # Application entry point
 ```
 
 ## Getting Started
