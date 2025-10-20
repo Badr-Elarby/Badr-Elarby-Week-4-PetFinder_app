@@ -3,8 +3,12 @@
 
 PetFinder App is a mobile application built with Flutter that allows users to discover, view details, and save their favorite cats. It leverages [The Cat API](https://thecatapi.com/) to provide an extensive and randomly generated list of cat profiles, showcasing a modern and scalable app architecture.
 
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 For a deeper understanding of the project — including detailed diagrams and an in-depth breakdown of each layer and feature —  
 **[click here](https://deepwiki.com/Badr-Elarby/Badr-Elarby-Week-4-PetFinder_app)**.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 
 ## Features
 
