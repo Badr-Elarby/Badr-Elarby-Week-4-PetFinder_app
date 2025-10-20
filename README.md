@@ -35,6 +35,31 @@ This project is built using a **Clean Architecture** approach, promoting a clear
 
 The project's `lib` directory is organized by features, with a `core` directory for shared functionality.
 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+## 📸 Screenshots
+
+### 🟢 Splash & Onboarding
+| Splash | Onboarding |
+|:--:|:--:|
+| ![Splash](./media/splash.png) | ![Onboarding](./media/onboarding.png) |
+
+---
+
+### 🏠 Home Screens
+| Home 1 | Home 2 | Home 3 |
+|:--:|:--:|:--:|
+| ![Home1](./media/home.png) | ![Home2](./media/home1.png) | ![Home3](./media/home2.png) |
+
+---
+
+### 🐾 Category Details & Favorites
+| Category Details | Favorites |
+|:--:|:--:|
+| ![Category Details](./media/cat_details.png) | ![Favorites](./media/favorites.png) |
+
+
+
+
 ```
 lib/
 ├── core/                  # Shared utilities, services, and widgets
