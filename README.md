@@ -109,7 +109,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ## 🎬 App Demo
 
 You can download or watch the demo video here:  
-[▶️ Watch Demo](media/demo.mp4)
+[▶️ Watch Demo](media/demo.gif)
 
 
 
