@@ -5,7 +5,7 @@ PetFinder App is a mobile application built with Flutter that allows users to di
 
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-**For a deeper understanding of the project — including detailed diagrams and an in-depth breakdown of each layer and feature —  
+**For a deeper understanding of the project — including detailed diagrams and an in-depth breakdown of each layer and feature — ** 
 **[click here](https://deepwiki.com/Badr-Elarby/Badr-Elarby-Week-4-PetFinder_app)**.
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
