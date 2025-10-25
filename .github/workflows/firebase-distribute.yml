@@ -35,6 +35,6 @@ jobs:
         with:
           appId: 1:267243080219:android:2bb37f2d1b209523c346be
           token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
+          testers: "badrtest66@gmail.com"
           file: build/app/outputs/flutter-apk/app-release.apk
           releaseNotes: "🔥 Auto build from main branch"
