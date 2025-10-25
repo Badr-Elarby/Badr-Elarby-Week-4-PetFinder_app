@@ -36,7 +36,7 @@ class OnboardingScreen extends StatelessWidget {
                   children: [
                     // Heading text
                     Text(
-                      'Find Your Best Companion With Us',
+                      'Find Your Best Companion With Us ',
                       style: AppTextStyles.HeadingBlack24Bold,
                       textAlign: TextAlign.center,
                     ),
@@ -45,7 +45,7 @@ class OnboardingScreen extends StatelessWidget {
 
                     // Description text
                     Text(
-                      'Join us now as the best suitable pets ids will be found for you to you rescue',
+                      'Join us now as the best suitable pets ids will be found for you and your family .',
                       style: AppTextStyles.SubTextGrey16Regular,
                       textAlign: TextAlign.center,
                     ),
