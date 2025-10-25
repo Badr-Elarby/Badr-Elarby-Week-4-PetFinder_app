@@ -11,30 +11,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ✅ 1. Checkout the repo
+      # 1️⃣ Checkout the repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # ✅ 2. Set up Flutter
+      # 2️⃣ Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.19.0"
+          flutter-version: "3.35.7"
 
-      # ✅ 3. Install dependencies
+      # 3️⃣ Cache Flutter dependencies
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+            .packages
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      # 4️⃣ Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # ✅ 4. Build release APK
+      # 5️⃣ Build release APK (faster)
       - name: Build release APK
-        run: flutter build apk --release
+        run: flutter build apk --release --no-shrink
 
-      # ✅ 5. Upload to Firebase App Distribution
+      # 6️⃣ Upload to Firebase App Distribution
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: 1:1076138122667:android:7b29ffd63eaf82eede86ee   # ⚠️ غيرها لـ App ID بتاعك
+          appId: 1:267243080219:android:2bb37f2d1b209523c346be
           token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
+          testers: "badrtest66@gmail.com"
           file: build/app/outputs/flutter-apk/app-release.apk
           releaseNotes: "🔥 Auto build from main branch"
