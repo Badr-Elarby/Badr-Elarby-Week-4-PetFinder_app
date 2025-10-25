@@ -1,4 +1,4 @@
-name: 🚀 Firebase Distribution
+name: 🚀 Firebase fastlane Distribution with github workflow
 
 on:
   push:
