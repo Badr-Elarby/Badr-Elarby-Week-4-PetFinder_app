@@ -1,0 +1,40 @@
+name: 🚀 Firebase Distribution
+
+on:
+  push:
+    branches:
+      - main   # يشتغل لما تبوش على main فقط
+
+jobs:
+  build:
+    name: Build & Upload to Firebase
+    runs-on: ubuntu-latest
+
+    steps:
+      # ✅ 1. Checkout the repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # ✅ 2. Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.19.0"
+
+      # ✅ 3. Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # ✅ 4. Build release APK
+      - name: Build release APK
+        run: flutter build apk --release
+
+      # ✅ 5. Upload to Firebase App Distribution
+      - name: Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: 1:1076138122667:android:7b29ffd63eaf82eede86ee   # ⚠️ غيرها لـ App ID بتاعك
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-release.apk
+          releaseNotes: "🔥 Auto build from main branch"
