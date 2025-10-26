@@ -1,0 +1,35 @@
+name: 🚀 Firebase fastlane Distribution with github workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.35.7"
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Setup Service Account
+      - name: Setup Firebase Service Account
+        run: |
+          echo "${{ secrets.GOOGLE_CREDENTIALS }}" > $GITHUB_WORKSPACE/google-services.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$GITHUB_WORKSPACE/google-services.json" >> $GITHUB_ENV
+
+      # 5. Build & Distribute via Fastlane
+      - name: Build & Upload to Firebase
+        run: bundle exec fastlane android firebase_distribution
